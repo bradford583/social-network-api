@@ -27,7 +27,7 @@ const ReactionsSchema = new Schema({
     }
 });
 
-const ThougthsSchema = new Schema({
+const ThoughtsSchema = new Schema({
     thoughtText: {
         type: String,
         required: true,
@@ -53,7 +53,7 @@ const ThougthsSchema = new Schema({
     id: false
 });
 
-ThougthsSchema.virtual('reactionCount').get(function() {
+ThoughtsSchema.virtual('reactionCount').get(function() {
     return this.reactions.length;
 });
 

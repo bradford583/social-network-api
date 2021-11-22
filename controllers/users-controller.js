@@ -26,7 +26,7 @@ const usersController = {
         });
     },
 
-    getUserById({ params }, res) {
+    getUsersById({ params }, res) {
         Users.findOne({ _id: params.id })
         .populate({path: 'thoughts', select: '-__v'})
         .populate({path: 'friends', select: '-__v'})
