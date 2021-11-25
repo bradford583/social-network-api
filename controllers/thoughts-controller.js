@@ -44,7 +44,7 @@ const thoughtsController = {
         })
     },
 
-    updateThoughts({ params }, res) {
+    updateThoughts({ params, body }, res) {
         Thoughts.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
         .populate({ path: 'reactions', select: '-__v'})
         .select('-__v')
