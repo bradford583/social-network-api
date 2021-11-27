@@ -65,7 +65,7 @@ const thoughtsController = {
                 res.status(404).json({ message: 'No thoughts found with this id!' })
                 return;
             }
-            res.json(dbThoughtsData);
+            res.json({ message: 'This thought has been successfully deleted!' });
         })
         .catch(err => res.status(400).json(err))
     },
@@ -84,14 +84,14 @@ const thoughtsController = {
         .catch(err => res.status(400).json(err))
     },
 
-    deleteReaction({ params }, res) {
-        Thoughts.findOneAndUpdate({ _id: params.thoughtId }, { $pull: { reactions: {reactionId: params.reactionId } } }, { new: true })
+    deleteReaction({ params, body }, res) {
+        Thoughts.findOneAndUpdate({ _id: params.thoughtId }, { $pull: { reactions: {reactionId: body.reactionId } } }, { new: true, runValidators: true })
         .then(dbThoughtsData => {
             if(!dbThoughtsData) {
                 res.status(404).json({ message: 'No thought found with this id!' })
                 return;
             }
-            res.json(dbThoughtsData)
+            res.json({ message: 'This reaction has been successfully deleted!' })
         })
         .catch(err => res.status(400).json(err));
     }
