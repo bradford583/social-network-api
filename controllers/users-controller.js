@@ -88,7 +88,7 @@ const usersController = {
         .catch(err => res.json(err))
     },
 
-    deleteFriend({ parmas }, res) {
+    deleteFriend({ params }, res) {
         Users.findOneAndUpdate({ _id: params.id }, { $pull: { friends: params.friendId } }, { new: true })
         .populate({ path: 'friends', select: '-__v' })
         .select('-__v')
